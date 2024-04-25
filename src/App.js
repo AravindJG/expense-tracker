@@ -1,23 +1,19 @@
 import logo from './logo.svg';
+import React,{useState} from 'react'
+import Expense from './Components/Expense';
 import './App.css';
+import Income from './Components/Income';
+import Item from './Components/Item';
 
 function App() {
+  const [total,setTotal] = useState(0);
+  const [itemList, setItemList] = useState([{type:'milk',amount:'50'},{type:'food',amount:'150'}])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Income setTotal={setTotal}/>
+      <Expense total={total}/>
+      <Item items={itemList}/>
+      <h1>Balance:{total}</h1>
     </div>
   );
 }
