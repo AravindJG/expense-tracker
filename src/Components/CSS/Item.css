@@ -1,7 +1,7 @@
 .item-container{
     border: 8px solid #4e4e4e;
     width: 30vw;
-    padding: 15px;
+    /* padding: 15px; */
     margin: 0;
 }
 .item-container p{
@@ -18,8 +18,15 @@
     font-size: 1.8rem;
     font-weight: 600;
 }
-.item-container .line{
+.item-container hr{
+    /* margin: 0; */
+    border: none;
+    background: #4e4e4e;
+    height: 4px;
+    width: 100%;
+}
+/* .item-container .line{
     font-weight: 900;
     margin-left: -15px;
     color: #4e4e4e;
-}
+} */

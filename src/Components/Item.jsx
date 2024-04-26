@@ -9,20 +9,20 @@ function Item(props) {
         {
         (items.length === 0) 
         ? 
-        (<div>
-          <p className='line'>_________________________________________________________</p>
+        (<div className='item-inner-container'>
+          <hr />
           <p>No Expense Entry</p>
         </div>) 
         : 
         items.map((item,i) => {
             return (
-            <div  key={i}>
-              <p className='line'>_________________________________________________________</p>
+            <div className='item-inner-container' key={i}>
+              <hr />
                 <p className='items'><span>{item.type}</span> <span>{item.amount}</span></p>
             </div>
             )
         })}
-        <p className='line'>_________________________________________________________</p>
+        <hr />
         <p><span>Total</span><span>{expenseTotal}</span></p>
 
     </div>

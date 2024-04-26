@@ -6,7 +6,7 @@ function Expense(props) {
   const [expenseType, setExpenseType] = useState("");
   const [amount, setAmount] = useState("");
   function addItem(e) {
-    if(balance - Number(amount) > 0){
+    if(balance - Number(amount) >= 0){
       setItemList(prevItems => [...prevItems, { type: expenseType, amount: amount }]);
       setExpenseTotal(e => e + Number(amount));
       setBalance(t => t - Number(amount));
