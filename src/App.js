@@ -1,21 +1,25 @@
-import logo from './logo.svg';
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Expense from './Components/Expense';
 import './App.css';
 import Income from './Components/Income';
 import Item from './Components/Item';
 
 function App() {
-  const [total,setTotal] = useState(0);
-  const [itemList, setItemList] = useState([{type:'milk',amount:'50'},{type:'food',amount:'150'}])
+  const [balance, setBalance] = useState(0);
+  const [itemList, setItemList] = useState([]);
+  const [expenseTotal, setExpenseTotal] = useState(0);
   return (
     <div className="App">
-      <Income setTotal={setTotal}/>
-      <Expense total={total}/>
-      <Item items={itemList}/>
-      <h1>Balance:{total}</h1>
+      <div>
+        <Income setBalance={setBalance} />
+      </div>
+      <div><Expense balance={balance} setBalance={setBalance} setItemList={setItemList} setExpenseTotal={setExpenseTotal} /></div>
+      <div>
+        <Item items={itemList} expenseTotal={expenseTotal} />
+        <h1><span>Balance:</span><span>₹ {balance}</span></h1>
+      </div>
     </div>
-  );
+  ); 
 }
 
 export default App;

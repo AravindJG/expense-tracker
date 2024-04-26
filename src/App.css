@@ -1,7 +1,17 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: auto;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.5), rgba(107, 91, 255, 0.5));
 }
-
+.App h1{
+  border: 5px solid #4e4e4e;
+  display: flex;
+  color: #282c34;
+  justify-content: space-between;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

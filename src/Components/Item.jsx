@@ -1,17 +1,29 @@
 import React from 'react'
+import './CSS/Item.css'
 
 function Item(props) {
-    const {items} = props;
+    const {items, expenseTotal} = props;
   return (
     <div className='item-container'>
-        <p>Expense type&emsp;&emsp;&emsp;amount</p>
-        {items.map((item,i) => {
+        <p><span>Expense type</span> <span>amount</span></p>
+        {
+        (items.length === 0) 
+        ? 
+        (<div>
+          <p className='line'>_________________________________________________________</p>
+          <p>No Expense Entry</p>
+        </div>) 
+        : 
+        items.map((item,i) => {
             return (
-            <div>
-                {item.type}&emsp;&emsp;&emsp;{item.amount}
+            <div  key={i}>
+              <p className='line'>_________________________________________________________</p>
+                <p className='items'><span>{item.type}</span> <span>{item.amount}</span></p>
             </div>
             )
         })}
+        <p className='line'>_________________________________________________________</p>
+        <p><span>Total</span><span>{expenseTotal}</span></p>
 
     </div>
   )

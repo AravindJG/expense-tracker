@@ -1,0 +1,40 @@
+.income-container{
+    border: 8px solid #4e4e4e;
+    height: 40vh;
+    width: 30vw;
+}
+.income-container form{
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    align-items: center;
+    color: #343333;
+    gap: 40px;
+}
+.income-container input[type=number] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 70%;
+    color: #4e4e4e;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: none;
+    background: #ebebeb;
+    border-radius: 10px;
+    outline: none;
+}
+.income-container input[type=submit]{
+    height: 40px;
+    width: 20%;
+    border: none;
+    border-radius: 15px;
+    background: #ebebeb;
+    font-size: 1.25rem;
+    color: #4e4e4e;
+    transition: all 0.5s ease;
+}
+.income-container input[type=submit]:hover{
+    transform: scale(1.05);
+}
