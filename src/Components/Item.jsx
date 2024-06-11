@@ -2,7 +2,8 @@ import React from 'react'
 import './CSS/Item.css'
 
 function Item(props) {
-    const {items, expenseTotal} = props;
+  const {items, setBalance} = props;
+  let expenseTotal = 0;
   return (
     <div className='item-container'>
         <p><span>Expense type</span> <span>amount</span></p>
@@ -15,6 +16,7 @@ function Item(props) {
         </div>) 
         : 
         items.map((item,i) => {
+          expenseTotal += item.amount;
             return (
             <div className='item-inner-container' key={i}>
               <hr />
@@ -24,7 +26,7 @@ function Item(props) {
         })}
         <hr />
         <p><span>Total</span><span>{expenseTotal}</span></p>
-
+        {setBalance(15000-expenseTotal)}
     </div>
   )
 }

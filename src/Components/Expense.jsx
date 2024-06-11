@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
 import './CSS/Expense.css'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Expense(props) {
-  const { setBalance, setItemList, setExpenseTotal, balance } = props;
+  const { setBalance, balance } = props;
   const [expenseType, setExpenseType] = useState("");
   const [amount, setAmount] = useState("");
-  function addItem(e) {
+  async function addItem(e) {
     if (balance - Number(amount) >= 0) {
-      setItemList(prevItems => [...prevItems, { type: expenseType, amount: amount }]);
-      setExpenseTotal(e => e + Number(amount));
-      setBalance(t => t - Number(amount));
+      toast.success("Expenses updated successfully");
+      try{
+        const response = await axios.post("http://localhost:5000/",{ type: expenseType, amount: amount });
+        // console.log(response.data);
+        setBalance(t => t - Number(amount));
+      } catch (error){
+        console.log(error);
+      }
     }
     else {
-      alert("Insufficient Balance");
+      toast.error("Insufficient Balance");
     }
     setExpenseType("");
     setAmount("");
