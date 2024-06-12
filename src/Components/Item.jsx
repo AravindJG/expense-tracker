@@ -2,7 +2,11 @@ import React from 'react'
 import './CSS/Item.css'
 
 function Item(props) {
-  const {items, setBalance} = props;
+  const {items,setExpenseTotal} = props;
+  const expenseSetter = ()=>{
+    setExpenseTotal(expenseTotal);
+  }
+  
   let expenseTotal = 0;
   return (
     <div className='item-container'>
@@ -15,7 +19,7 @@ function Item(props) {
           <p>No Expense Entry</p>
         </div>) 
         : 
-        items.map((item,i) => {
+        (items.map((item,i) => {
           expenseTotal += item.amount;
             return (
             <div className='item-inner-container' key={i}>
@@ -23,12 +27,12 @@ function Item(props) {
                 <p className='items'><span>{item.type}</span> <span>{item.amount}</span></p>
             </div>
             )
-        })}
+        }))
+        }
         <hr />
-        <p><span>Total</span><span>{expenseTotal}</span></p>
-        {setBalance(15000-expenseTotal)}
+        <p onClick={expenseSetter()}><span>Total</span><span>{expenseTotal}</span></p>
     </div>
   )
 }
 
-export default Item
+export default Item;

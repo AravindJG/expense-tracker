@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import './CSS/Income.css';
+import { toast } from 'react-toastify';
 function Income({setBalance}) {
     const [income, setIncome] = useState("");
     function addIncome(e){
         setBalance(income);
+        toast.success(`${income} added successfully`);
+        window.localStorage.setItem("income",income);
         setIncome("");
         e.preventDefault();
     }

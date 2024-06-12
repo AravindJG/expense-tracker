@@ -4,24 +4,30 @@ import Expense from './Components/Expense';
 import './App.css';
 import Income from './Components/Income';
 import Item from './Components/Item';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [balance, setBalance] = useState(15000);
+  const [balance, setBalance] = useState(0);
   const [itemList, setItemList] = useState([]);
+  const [expenseTotal , setExpenseTotal] = useState(0);
   const fetchData = async()=>{
+    let localStorage = window.localStorage.getItem("income");
     try{
-      const response = await axios.get("http://localhost:5000/");
-      setItemList(response.data);
-      console.log(itemList);
+      if(localStorage  > 0){
+        const response = await axios.get("http://localhost:5000/");
+        if(localStorage !== 0) setBalance(window.localStorage.getItem("income"));
+        setItemList(response.data);
+      }else{
+        toast.warning("Enter income");
+      }
     } catch(error){
       console.log(error);
     }
   }
-  useEffect(()=>{
+  useEffect(()=>{  
     fetchData();
-  },[]);
+  },[balance]);
   
   return (
     <div className="App">
@@ -30,8 +36,8 @@ function App() {
       </div>
       <div><Expense balance={balance} setBalance={setBalance} setItemList={setItemList} /></div>
       <div>
-        <Item items={itemList} setBalance={setBalance}/>
-        <h1><span>Balance:</span><span>₹ {balance}</span></h1>
+        <Item items={itemList} setExpenseTotal={setExpenseTotal}/>
+        <h1><span>Balance:</span><span>₹ {balance - expenseTotal}</span></h1>
       </div>
       <ToastContainer/>
     </div>

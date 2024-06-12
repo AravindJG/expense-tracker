@@ -11,8 +11,7 @@ function Expense(props) {
     if (balance - Number(amount) >= 0) {
       toast.success("Expenses updated successfully");
       try{
-        const response = await axios.post("http://localhost:5000/",{ type: expenseType, amount: amount });
-        // console.log(response.data);
+        await axios.post("http://localhost:5000/",{ type: expenseType, amount: amount });
         setBalance(t => t - Number(amount));
       } catch (error){
         console.log(error);
