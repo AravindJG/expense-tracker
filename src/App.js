@@ -7,24 +7,30 @@ import Item from './Components/Item';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function App() {
   const [balance, setBalance] = useState(0);
   const [itemList, setItemList] = useState([]);
   const [expenseTotal , setExpenseTotal] = useState(0);
   const fetchData = async()=>{
-    let localStorage = window.localStorage.getItem("income");
     try{
-      if(localStorage  > 0){
-        const response = await axios.get("http://localhost:5000/");
-        if(localStorage !== 0) setBalance(window.localStorage.getItem("income"));
+      if(balance  > 0){
+        const response = await axios.get(BACKEND_URL);
         setItemList(response.data);
-      }else{
-        toast.warning("Enter income");
+      }
+      else if(window.localStorage.getItem("income") === '0'){
+        toast.warning("Please Enter income");
       }
     } catch(error){
+      toast.error("Failed to connect to backend");
       console.log(error);
     }
   }
+  useEffect(()=>{
+    if(window.localStorage.getItem("income") !== '0') setBalance(window.localStorage.getItem("income"));
+  },[]);
+  
   useEffect(()=>{  
     fetchData();
   },[balance]);

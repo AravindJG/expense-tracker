@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './CSS/Expense.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { BACKEND_URL } from '../App';
 
 function Expense(props) {
   const { setBalance, balance } = props;
@@ -11,7 +12,7 @@ function Expense(props) {
     if (balance - Number(amount) >= 0) {
       toast.success("Expenses updated successfully");
       try{
-        await axios.post("http://localhost:5000/",{ type: expenseType, amount: amount });
+        await axios.post(BACKEND_URL,{ type: expenseType, amount: amount });
         setBalance(t => t - Number(amount));
       } catch (error){
         console.log(error);
